@@ -6,21 +6,23 @@ import Hamburger from './Hamburger'
 import Item from './Item'
 import Modal from './Modal'
 import MobileItem from './MobileItem'
+import ToggleMode from '../ToggleMode'
 
 interface MenuItem {
+  id: string
   label: string
   path: string
   cta?: boolean
 }
 
-const items: MenuItem[] = [
-  { label: 'Sortiment', path: '/products' },
-  { label: 'Neuigkeiten', path: '/news' },
-  { label: 'Über uns', path: '/about' },
+export const items: MenuItem[] = [
+  { id: 'products', label: 'Sortiment', path: '/products' },
+  { id: 'news', label: 'Neuigkeiten', path: '/news' },
+  { id: 'about', label: 'Über uns', path: '/about' },
 ]
 
 const ctaItems: MenuItem[] = [
-  { label: 'Bestellen', path: '/bestellen', cta: true },
+  { id: 'order', label: 'Bestellen', path: '/bestellen', cta: true },
 ]
 
 const Header = () => {
@@ -36,7 +38,7 @@ const Header = () => {
     >
       <Box sx={styles.header}>
         <Link href="/">
-          <Box sx={styles.logo}>
+          <Box id="logo" sx={styles.logo}>
             <Heusser />
           </Box>
         </Link>
@@ -55,6 +57,7 @@ const Header = () => {
               {ctaItems.map((item) => (
                 <Item key={item.label} {...item} />
               ))}
+              <ToggleMode />
             </Box>
           </Box>
         )}
@@ -120,10 +123,8 @@ const styles = {
   },
   ctas: {
     display: 'flex',
-    '& .menu-item': {
-      ml: 1,
-    },
+    gap: 2,
   },
 }
 
-export { Header }
+export default Header

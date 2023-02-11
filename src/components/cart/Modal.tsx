@@ -7,27 +7,29 @@ interface Props extends BoxProps {
 }
 
 const Modal: React.FC<Props> = (props) => {
-  const { open, setOpen, children } = props
+  const { open, setOpen, children } = props
 
   return (
     <MuiModal
       open={open}
       onClose={() => setOpen(false)}
-      aria-labelledby='mobile-menu'
-      aria-describedby='mobile-hamburger-menu'
+      aria-labelledby="mobile-menu"
+      aria-describedby="mobile-hamburger-menu"
       sx={{
         position: 'fixed',
         zIndex: '100000',
-        bgcolor: 'rgba(255,255,255,0.66)',
+        bgcolor: 'background.default',
         backdropFilter: 'blur(8px)',
         '& .MuiBackdrop-root': {
-          bgcolor: 'transparent'
-        }
+          bgcolor: 'transparent',
+        },
       }}
     >
-      <Box sx={{
-        outline: 'none'
-      }}>
+      <Box
+        sx={{
+          outline: 'none',
+        }}
+      >
         {children}
       </Box>
     </MuiModal>

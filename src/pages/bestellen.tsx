@@ -17,26 +17,7 @@ const Index: React.FC = () => (
       }}
     >
       <Container maxWidth="sm">
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            mb: 6,
-          }}
-        >
-          <Button sx={styles.button}>Anrufen</Button>
-          <Button sx={styles.button}>WhatsApp</Button>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            mb: 6,
-          }}
-        >
-          <Form />
-        </Box>
+        <Form />
       </Container>
     </Box>
   </Base>

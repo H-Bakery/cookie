@@ -8,9 +8,9 @@ const buttons = {
   fontFamily: 'Averia Serif Libre',
 }
 
-const theme: ThemeOptions = {
+const dark: ThemeOptions = {
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
       main: '#D038BA',
     },
@@ -30,12 +30,12 @@ const theme: ThemeOptions = {
       900: '#131F37',
     },
     background: {
-      paper: '#FFFFFF',
-      default: '#F6F8FC',
+      paper: '#131F37',
+      default: '#293858',
     },
     text: {
-      primary: '#131F37',
-      secondary: '#485776',
+      primary: '#F6F8FC',
+      secondary: '#E8EEFB',
       disabled: '#909FBE',
     },
   },
@@ -51,4 +51,4 @@ const theme: ThemeOptions = {
   },
 }
 
-export default theme
+export default dark

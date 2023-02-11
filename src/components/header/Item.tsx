@@ -4,32 +4,32 @@ import { Box, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 
 interface Props {
+  id: string
   label: string
   path: string
   cta?: boolean
 }
 
 const Item: React.FC<Props> = (props) => {
-  const { label, path, cta = false } = props
+  const { id, label, path, cta = false } = props
   const { pathname } = useRouter()
   const isActive = pathname === path
 
   return (
     <Link href={path}>
       <Box
+        id={`menu-item-${id}`}
         sx={styles}
         className={`menu-item ${cta && 'cta'} ${isActive && 'active'}`}
       >
-        <Typography variant='button'>
-          {label}
-        </Typography>
+        <Typography variant="button">{label}</Typography>
       </Box>
     </Link>
   )
 }
 
 const styles = {
-  bgcolor: 'grey.200',
+  bgcolor: 'background.default',
   px: '12px',
   py: '8px',
   borderRadius: '8px',
@@ -37,23 +37,24 @@ const styles = {
   boxShadow: 1,
   cursor: 'pointer',
   transition: 'all ease-in-out 200ms',
-  
+
   '&:hover': {
-    bgcolor: 'grey.300'
+    bgcolor: 'text.primary',
+    color: 'background.paper',
   },
-  
+
   '&.active': {
-    bgcolor: 'primary.main',
-    color: 'common.white'
+    bgcolor: 'text.primary',
+    color: 'background.paper',
   },
-  
+
   '&.cta': {
     color: 'common.white',
     bgcolor: 'primary.main',
 
     '&:hover': {
-      bgcolor: 'primary.dark'
-    }
+      bgcolor: 'primary.dark',
+    },
   },
 }
 

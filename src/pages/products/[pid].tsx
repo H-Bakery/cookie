@@ -39,9 +39,13 @@ const Index: React.FC = () => {
                 {formatter.format(currentProduct?.price)}
               </Typography>
             </Box>
-            {/* <Button sx={{ mt: 2 }} onClick={() => add(currentProduct?.id)}>
+            <Button
+              data-cy="add-to-cart"
+              sx={{ mt: 2 }}
+              onClick={() => add(currentProduct?.id)}
+            >
               Zum Warenkorb
-            </Button> */}
+            </Button>
           </Grid>
         </Grid>
       </Container>

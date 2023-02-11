@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   }, [])
 
   return (
-    <Box sx={styles.hero}>
+    <Box id="home-hero" sx={styles.hero}>
       <Box sx={styles.logo}>
         <Wappen />
         <Baeckerei />

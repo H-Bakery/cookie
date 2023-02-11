@@ -54,7 +54,6 @@ const styles = {
 
     '&:hover': {
       transform: 'translateY(-4px)',
-      bgcolor: 'grey.300',
       '& .image': {
         bgcolor: 'grey.50',
       },

@@ -3,7 +3,7 @@ import { Container } from '@mui/material'
 
 import Hero from '../../components/Hero'
 import Base from '../../layout/Base'
-import Input from '../../components/Input'
+import Input from '../../components/Input/Input'
 import Button from '../../components/button/Index'
 
 interface Data {
@@ -13,10 +13,10 @@ interface Data {
 
 const DEFAULT = {
   username: '',
-  password: ''
+  password: '',
 }
 
-const Login: React.FC  = () => {
+const Login: React.FC = () => {
   const [data, setData] = React.useState<Data>(DEFAULT)
 
   const submit = () => {
@@ -25,26 +25,24 @@ const Login: React.FC  = () => {
 
   return (
     <Base>
-      <Hero title='Anmelden' />
-      <Container maxWidth='sm'>
+      <Hero title="Anmelden" />
+      <Container maxWidth="sm">
         <Input
-          name='username'
-          placeholder='Benutzername'
-          label='Benutzername'
-          onChange={(e) => setData({...data, username: e.target.value })}
+          name="username"
+          placeholder="Benutzername"
+          label="Benutzername"
+          onChange={(e) => setData({ ...data, username: e.target.value })}
           value={data.username}
         />
         <Input
-          name='password'
-          type='password'
-          placeholder='Passwort'
-          label='Passwort'
-          onChange={(e) => setData({...data, password: e.target.value })}
+          name="password"
+          type="password"
+          placeholder="Passwort"
+          label="Passwort"
+          onChange={(e) => setData({ ...data, password: e.target.value })}
           value={data.password}
         />
-        <Button onClick={submit}>
-          Anmelden
-        </Button>
+        <Button onClick={submit}>Anmelden</Button>
       </Container>
     </Base>
   )

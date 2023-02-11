@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import { Box, Chip, Typography } from '@mui/material'
 
 import { formatter } from '../../../utils/formatPrice'
-import { CartContext } from '../../../context/CartContext'
 
 interface Props {
   id: number
@@ -20,6 +19,7 @@ const ProductCard: React.FC<Props> = (props) => {
 
   return (
     <Box
+      data-cy={`product-card-${id}`}
       sx={styles.card}
       onClick={() => router.push(`products/${id}`)}
       className="product-card"
@@ -51,7 +51,6 @@ const styles = {
     cursor: 'pointer',
     '&:hover': {
       transform: 'translateY(-4px)',
-      bgcolor: 'grey.300',
       '& .image': {
         bgcolor: 'grey.50',
       },
