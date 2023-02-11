@@ -9,45 +9,53 @@ import { Product } from '../../components/products/types'
 import { formatter } from '../../utils/formatPrice'
 import Button from '../../components/button/Index'
 import { CartContext } from '../../context/CartContext'
+import { useProduct } from '../../hooks/useProduct'
 
 const Index: React.FC = () => {
   const router = useRouter()
   const { pid } = router.query
 
-  const { add } = React.useContext(CartContext)
+  const { data, isLoading, isFetching } = useProduct(String(pid))
+  const loading = isLoading && isFetching
 
-  const products: Product[] = PRODUCTS.filter(
-    (item) => Number(pid) === Number(item.id)
-  )
-  const currentProduct: Product = products[0]
+  const { add } = React.useContext(CartContext)
 
   return (
     <Base>
       <Container maxWidth="sm">
-        <Hero title={currentProduct?.name} />
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Box sx={styles.image}>
-              <img src={currentProduct?.image} />
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography>{currentProduct?.name} Beschreibung</Typography>
-            <Box sx={styles.footer}>
-              <Chip size="small" label={currentProduct?.category} />
-              <Typography variant="button" fontSize="16px">
-                {formatter.format(currentProduct?.price)}
-              </Typography>
-            </Box>
-            <Button
-              data-cy="add-to-cart"
-              sx={{ mt: 2 }}
-              onClick={() => add(currentProduct?.id)}
-            >
-              Zum Warenkorb
-            </Button>
-          </Grid>
-        </Grid>
+        {loading && <Typography>Loading...</Typography>}
+        {data && (
+          <>
+            <Hero title={data.title} />
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <Box
+                  sx={{
+                    ...styles.image,
+                    backgroundImage: `url(${data.image_url})`,
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Typography color="text.secondary" variant="body2">
+                  {data.description}
+                </Typography>
+                <Box sx={styles.footer}>
+                  <Typography variant="button" fontSize="16px">
+                    {formatter.format(data.price)}
+                  </Typography>
+                </Box>
+                <Button
+                  data-cy="add-to-cart"
+                  sx={{ mt: 2 }}
+                  onClick={() => add(data.id)}
+                >
+                  Zum Warenkorb
+                </Button>
+              </Grid>
+            </Grid>
+          </>
+        )}
       </Container>
     </Base>
   )

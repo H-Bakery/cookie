@@ -23,10 +23,13 @@ const ProductCard: React.FC<Props> = (props) => {
       onClick={() => router.push(`products/${id}`)}
       className="product-card"
     >
-      <Box sx={styles.image} className="image">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt={name} />
-      </Box>
+      <Box
+        sx={{
+          ...styles.image,
+          backgroundImage: `url(${image})`,
+        }}
+        className="image"
+      ></Box>
       <Typography sx={styles.name}>{name}</Typography>
       {price && (
         <Box sx={styles.footer}>
@@ -57,13 +60,15 @@ const styles = {
     },
   },
   image: {
-    bgcolor: 'grey.200',
+    bgcolor: 'text.disabled',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
     borderRadius: '8px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     mb: 1,
-    minHeight: 140,
+    minHeight: 160,
     transition: 'all ease-in-out 300ms',
     '& img': {
       maxWidth: '90%',
