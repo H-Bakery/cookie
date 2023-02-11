@@ -1,26 +1,46 @@
-import React, { useState } from "react"
-import { Box, Container } from "@mui/material"
+import React from 'react'
+import { Box, Container, Grid } from '@mui/material'
 
-import { PRODUCTS } from "../../mocks/products"
-import Base from "../../layout/Base"
-import Hero from "../../components/Hero"
-import Filter from "../../components/products/Filter"
-import Products from "../../components/home/products"
+import Base from '../../layout/Base'
+import Hero from '../../components/Hero'
+import { Product, useProducts } from '../../hooks/useProducts'
+import ProductCard from '../../components/home/products/ProductCard'
 
 const Index = () => {
-  const [products, setProducts] = useState(PRODUCTS)
+  const { data, isLoading, isFetching } = useProducts()
+  const loading = isLoading || isFetching
 
   return (
     <Base>
-      <Hero title='Sortiment' />
+      <Hero title="Sortiment" />
       <Box mb={6}>
         <Container>
-          <Filter setProducts={setProducts} />
+          {loading && <div>Loading</div>}
+          <Grid container spacing={3}>
+            {data &&
+              data.map((product: Product) => (
+                <Grid key={product.id} item xs={3}>
+                  <ProductCard
+                    id={product.id}
+                    name={product.title}
+                    image={product.image_url}
+                    price={product.price}
+                  />
+                </Grid>
+              ))}
+          </Grid>
         </Container>
-        <Products items={products} />
       </Box>
     </Base>
   )
+}
+
+const styles = {
+  container: {
+    display: 'flex',
+    gap: 2,
+    flexWrap: 'wrap',
+  },
 }
 
 export default Index

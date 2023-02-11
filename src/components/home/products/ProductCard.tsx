@@ -7,13 +7,12 @@ import { formatter } from '../../../utils/formatPrice'
 interface Props {
   id: number
   name: string
-  category: string
   image: string
   price: number
 }
 
 const ProductCard: React.FC<Props> = (props) => {
-  const { id, name, category, image, price } = props
+  const { id, name, image, price } = props
 
   const router = useRouter()
 
@@ -29,12 +28,13 @@ const ProductCard: React.FC<Props> = (props) => {
         <img src={image} alt={name} />
       </Box>
       <Typography sx={styles.name}>{name}</Typography>
-      <Box sx={styles.footer}>
-        <Chip size="small" label={category} />
-        <Typography variant="button" fontSize="16px">
-          {formatter.format(price)}
-        </Typography>
-      </Box>
+      {price && (
+        <Box sx={styles.footer}>
+          <Typography variant="button" fontSize="16px">
+            {formatter.format(price)}
+          </Typography>
+        </Box>
+      )}
     </Box>
   )
 }
